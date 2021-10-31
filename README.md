@@ -1,9 +1,9 @@
-Run 
+## Run
 ```bash
 python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1
 ```
 
-# MAIC2021-FANORONA
+# MAIC 2021-FANORONA
 Fifth edition of the Mify Artificial Intelligence Contest #MIFY #AAAIBenin
 
 
@@ -31,24 +31,24 @@ Firstly, just clone this repository or download the zip to get everything you ne
 
 **Usage:**
 
-      python main.py -ai0 ai_0.py -ai1 ai_1.py -s 0.5
+     python main.py -ai0 ai_0.py -ai1 ai_1.py -s 0.5
 
 
-      -ai0 
+     -ai0 
           path to the ai that will play as player 0
-      -ai1 
-           path to the ai that will play as player 1
-      -s 
-           time(in second) to show the board(or a move)
-      -t
-           total number of seconds credited to each agent
+     -ai1 
+          path to the ai that will play as player 1
+     -s 
+          time(in second) to show the board(or a move)
+     -t
+          total number of seconds credited to each agent
 
 
 **Example:**
 
-        python main.py -ai0 ai_0.py -ai1 ai_1.py -s 1.5
+     python main.py -ai0 ai_0.py -ai1 ai_1.py -s 1.5
 
-        python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1
+     python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1
 
 
 
@@ -58,6 +58,6 @@ Now to run it you will have to use another file which is **main.py** with the sa
 
 **Example:**
 
-         python main.py -ai0 ai_0.py -ai1 ai_1.py -s 1.5 -t 120
+     python main.py -ai0 ai_0.py -ai1 ai_1.py -s 1.5 -t 120
 
-         python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1 -t 120
+     python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1 -t 120
