@@ -160,4 +160,6 @@ dmypy.json
 cython_debug/
 /media/*
 /game_api/game_files/*
+
 /.vscode/
+docs
