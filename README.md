@@ -1,4 +1,7 @@
+Run 
+```bash
 python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1
+```
 
 # MAIC2021-FANORONA
 Fifth edition of the Mify Artificial Intelligence Contest #MIFY #AAAIBenin
