@@ -1,9 +1,7 @@
-
 from faronona.faronona_player import FarononaPlayer
 from faronona.faronona_rules import FarononaRules
 from faronona.faronona_action import FarononaAction
 from faronona.faronona_action import FarononaActionType
-import random
 
 
 class AI(FarononaPlayer):
@@ -19,6 +17,7 @@ class AI(FarononaPlayer):
         action = FarononaRules.random_play(state, self.position)
         #Extract departure and arrival of the piece
         actionDict = action.get_action_as_dict()
+        print(actionDict)
         at = actionDict['action']['at']
         to = actionDict['action']['to']
         #check if it is a win move both for approach and remote
