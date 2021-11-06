@@ -9,7 +9,7 @@ from .node import Node
 class Search(object):
     """MTCS entry point."""
 
-    EPSILON = .1 # Exploration probability
+    EPSILON = .3 # Exploration probability
 
     def __init__(self, node: Node) -> None:
         """Initializer for search.
