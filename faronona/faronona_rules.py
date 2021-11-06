@@ -394,6 +394,9 @@ class FarononaRules(Rule):
         """
         if FarononaRules.is_player_stuck(state, state.get_next_player()) or FarononaRules.is_boring(state) : #
             return True
+        # TODO: Remove this check
+        if state.get_latest_player() is None:
+            return False
         latest_player_score = state.score[state.get_latest_player()]
         if latest_player_score >= MAX_SCORE:
             return True

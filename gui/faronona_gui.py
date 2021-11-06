@@ -23,7 +23,7 @@ import sys
 
 
 EPISODES = 1
-VERBOSE = False
+VERBOSE = True
 
 class FarononaGUI(QMainWindow):
     depth_to_cover = 9
@@ -237,7 +237,7 @@ class FarononaGUI(QMainWindow):
             turn = self.state.get_next_player()
         self._update_gui()
         # TODO: Uncomment this lines above
-        # self._results()
+        self._results()
         # self.save_game_trigger()
         print("\nIt's over.")
 

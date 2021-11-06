@@ -27,17 +27,4 @@ class AI(FarononaPlayer):
                 action = FarononaAction(action_type=FarononaActionType.MOVE, win_by='REMOTE', at=at, to=to)
             else: 
                 action = FarononaAction(action_type=FarononaActionType.MOVE, win_by='APPROACH', at=at, to=to)
-
-        if self.is_end_game_action(state, action):
-            print("Game is over")
-        
         return action
-
-    
-    def is_end_game_action(self, state, action: FarononaAction)->bool:
-        """Return True is next action end the game"""
-        action_copy = deepcopy(action)
-        state_copy = deepcopy(state)
-        next_state, _ = FarononaRules.act(state_copy, action_copy, self.position)
-        # TODO: Handle when action lead to a state where opponent action end game
-        return FarononaRules.is_end_game(next_state)
