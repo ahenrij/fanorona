@@ -22,7 +22,7 @@ class AI(FarononaPlayer):
             ))
         """
         root = Node(self.position, state)
-        action = Search(root).best_action(n_simulations=10)
+        action = Search(root).best_action(n_simulations=5)
         return action
 
     

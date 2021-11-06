@@ -55,6 +55,8 @@ class Node:
 
     def is_terminal_node(self):
         """Is game finished ?"""
+        if self.state.get_latest_player() is None:
+            return False
         return FarononaRules.is_end_game(self.state)
 
     def rollout(self) -> int:
@@ -68,24 +70,33 @@ class Node:
         
         while not FarononaRules.is_end_game(current_state):
             possible_moves = self.get_possible_actions(current_state, current_player)
-            action = self.rollout_policy(possible_moves)
+            action = self.rollout_policy_v2(current_state, possible_moves, current_player)
             current_state, _ = self.move(current_state, action, current_player)
             current_player = current_state.get_next_player()
 
-        results = FarononaRules.get_results(current_state)
-        return 0 if results['tie'] else results['winner']
+        return current_state.score
 
     def rollout_policy(self, possible_moves: List[FarononaAction]) -> FarononaAction:
         """Rollout move selection policy, currently random."""
         return possible_moves[np.random.randint(0, len(possible_moves))]
 
-    def backpropagate(self, result):
+    def rollout_policy_v2(self, state: FarononaState, possible_moves: List[FarononaAction], player: int) -> FarononaAction:
+        """Rollout move selection policy, pick best action for next move."""
+        actions_scores = {}
+        for move in possible_moves:
+            next_state, _ = self.move(deepcopy(state), move, player)
+            actions_scores[move] = next_state.score[player]
+
+        return max(actions_scores, key=actions_scores.get)
+
+    def backpropagate(self, score):
         """Backrpropagation of rollout simulation."""
         self._number_of_visits += 1.
-        self._results[result] += 1. # value backed up.
+        self._results[-1] += score[-1] # value backed up.
+        self._results[1] += score[1]
         _, parent = self.parent
         if parent:
-            parent.backpropagate(result)
+            parent.backpropagate(score)
 
     def is_fully_expanded(self):
         return len(self._untried_actions) == 0
@@ -136,8 +147,8 @@ class Node:
 
         if len(possible_actions) == 0:
             print("Debug")
-        is_end_game = FarononaRules.is_end_game(self.state)
-        assert not is_end_game and len(possible_actions) > 0, "There should be some possible action."
+        #is_end_game = FarononaRules.is_end_game(self.state)
+        # assert not is_end_game and len(possible_actions) > 0, "There should be some possible action."
         return possible_actions
 
     def get_win_strategy_actions(self, state: FarononaState, action: FarononaAction, player: int) -> List[FarononaAction]:
