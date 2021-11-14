@@ -21,13 +21,6 @@ class AI(FarononaPlayer):
 
     def play(self, state, remain_time):
         # manage simulation time
-        """
-        print("MCTS Agent {}".format(self.position))
-        print("Got {} actions for player {}".format(
-            len(FarononaRules.get_player_actions(deepcopy(state), self.position)),
-            self.position
-            ))
-        """
         root = Node(self.position, state)
         search_tree = Search(root, max_rollout_depth=self.MAX_ROLLOUT_DEPTH)
         action = search_tree.best_action(n_iterations=self.N_ITERATIONS)
