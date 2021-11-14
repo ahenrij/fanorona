@@ -59,7 +59,7 @@ class Node:
             return False
         return FarononaRules.is_end_game(self.state)
 
-    def rollout(self) -> int:
+    def rollout(self, max_depth: int = float('inf')) -> int:
         """Simulate entire game randomly from this note state.
 
         Returns:
@@ -68,15 +68,18 @@ class Node:
         current_state = deepcopy(self.state)
         current_player = self.current_player
         
-        while not FarononaRules.is_end_game(current_state):
+        depth = max_depth
+        while depth and not FarononaRules.is_end_game(current_state):
             possible_moves, scores = self.get_possible_actions(current_state, current_player)
             action = self.rollout_policy_v2(possible_moves, scores)
+            # action = self.rollout_policy_v1(possible_moves)
             current_state, _ = self.move(current_state, action, current_player)
             current_player = current_state.get_next_player()
+            depth -= 1
 
         return current_state.score
 
-    def rollout_policy(self, possible_moves: List[FarononaAction]) -> FarononaAction:
+    def rollout_policy_v1(self, possible_moves: List[FarononaAction]) -> FarononaAction:
         """Rollout move selection policy, currently random."""
         return possible_moves[np.random.randint(0, len(possible_moves))]
 

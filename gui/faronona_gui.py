@@ -230,6 +230,8 @@ class FarononaGUI(QMainWindow):
                     print("Not remain time for ", turn, " Performing a random move")
                     print(f"Lunching a random move for {turn}, and reward is {state.rewarding_move}")
                 action = FarononaRules.random_play(state, turn)  # TODO: Should we use the original state?
+                # BUG: Action is not played
+                self.step(action)
             self._update_gui()
             self.trace.add(self.state)
             self.players[turn].update_player_infos(self.get_player_info(turn))
