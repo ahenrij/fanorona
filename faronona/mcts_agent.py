@@ -7,7 +7,7 @@ class AI(FarononaPlayer):
     name = "MCTS Player"
 
     # MCTS Parameters
-    EPSILON = 0.1
+    EPSILON = .1
     MAX_ROLLOUT_DEPTH = float('inf')
     N_ITERATIONS = 15
 
