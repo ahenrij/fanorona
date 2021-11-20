@@ -162,4 +162,4 @@ cython_debug/
 /game_api/game_files/*
 
 /.vscode/
-docs
+docs/launch.pdf
