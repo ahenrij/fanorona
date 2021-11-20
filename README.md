@@ -1,10 +1,11 @@
 ## Run
 ```bash
-python main.py -ai0 ./faronona/random_agent.py -ai1 ./faronona/random_agent.py -s 1
+python main.py -ai0 ./faronona/mcts_agent.py -ai1 ./faronona/random_agent.py -t 100 -s 1
 ```
 
-# MAIC 2021-FANORONA
+# Fanorona
 Fifth edition of the Mify Artificial Intelligence Contest #MIFY #AAAIBenin
+## MCTS implementation of player agent
 
 
 ## Setup
