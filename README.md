@@ -6,6 +6,12 @@ python main.py -ai0 ./faronona/mcts_agent.py -ai1 ./faronona/random_agent.py -t 
 # Fanorona
 Fifth edition of the Mify Artificial Intelligence Contest #MIFY #AAAIBenin
 ## MCTS implementation of player agent
+The implementation is located in the faronona directory: 
+* __mcts_agent.py__
+* __mcts/__
+     * __node.py__
+     * __search.py__
+
 
 
 ## Setup
