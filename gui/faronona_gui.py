@@ -4,7 +4,6 @@ Created on 30 oct. 11:20 2020
 @author: HaroldKS
 """
 
-from re import VERBOSE
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import *
 from gui.panel import Panel
@@ -20,10 +19,6 @@ from utils.trace import Trace
 import argparse
 import time
 import sys
-
-
-EPISODES = 1
-VERBOSE = True
 
 class FarononaGUI(QMainWindow):
     depth_to_cover = 9
@@ -155,11 +150,9 @@ class FarononaGUI(QMainWindow):
         new_game = QMessageBox.question(self, 'New Game', "You're about to start a new Game.",
                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
         if new_game == QMessageBox.Yes:
-            # TODO: Remove resetting the seen board
-            for _ in range(EPISODES):
-                self.reset()
-                self._reset_for_new_game()
-                self.play_game()
+            self.reset()
+            self._reset_for_new_game()
+            self.play_game()
         else:
             pass
 
@@ -217,18 +210,14 @@ class FarononaGUI(QMainWindow):
                 elapsed_time = timer_first_player.stop() if turn == -1 else timer_second_player.stop()
                 remain_time = timer_first_player.remain_time() if turn == -1 else timer_second_player.remain_time()
                 if self.step(action):
-                    if VERBOSE:
-                        print('Action performed successfully by', turn, ' in', str(elapsed_time), ' rest ', remain_time)
+                    print('Action performed successfully by', turn, ' in', str(elapsed_time), ' rest ', remain_time)
                 else:
-                    if VERBOSE:
-                        print("An illegal move were given. Performing a random move")
-                        print(f"Lunching a random move for {turn}, and reward is {state.rewarding_move}")
-                    action = FarononaRules.random_play(state, turn)  # TODO: Should we use the original state?
-
-            else:
-                if VERBOSE:
-                    print("Not remain time for ", turn, " Performing a random move")
+                    print("An illegal move were given. Performing a random move")
                     print(f"Lunching a random move for {turn}, and reward is {state.rewarding_move}")
+                    action = FarononaRules.random_play(state, turn)  # TODO: Should we use the original state?
+            else:
+                print("Not remain time for ", turn, " Performing a random move")
+                print(f"Lunching a random move for {turn}, and reward is {state.rewarding_move}")
                 action = FarononaRules.random_play(state, turn)  # TODO: Should we use the original state?
                 # BUG: Action is not played
                 self.step(action)
